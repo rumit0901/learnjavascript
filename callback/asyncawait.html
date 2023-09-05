@@ -1,0 +1,41 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Learn Async/Await</h1>
+        <p>
+            Async function return a Promise<br>
+            We declared a function with the async keyword. Then to get the result of each promise, we adding the await keyword in front of it.
+        </p>
+
+    </body>
+    <script>
+        const sayhello = async () => {
+            return 'hello';
+        }
+        sayhello().then(result => console.log(result));
+
+        /// declare a promise
+        const promise = new Promise(function(resolve, reject) {
+            setTimeout(function() {
+                const sum = 4 + 5;
+                if(isNaN(sum)) {
+                    reject('Error while calculating sum');
+                } else {
+                    resolve(sum);
+                }
+                resolve(sum);
+            }, 2000);
+        });
+        // we can get the result of promise in 2 ways:
+        // 1. using .then
+        promise.then(function(result) {
+            console.log(result);
+        })
+        // 2. using await keyword
+        const getResult = async () => {
+            var rs = await promise;
+            console.log('inside async function, result = ' + rs);
+        }
+        getResult();
+    </script>
+</html>

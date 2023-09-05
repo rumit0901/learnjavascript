@@ -1,0 +1,46 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Learn Promise</h1>
+        <h3>A promise represents an asynchronous operation whose result will be come in the future</h3>
+        <p>
+            The promise constructor takes a function as an argument and that function internally receives resolve - reject as parameters.<br/>
+            The resolve - reject parameters are actually functions that we can call depending on the outcome of the asynchronous operation.<br/>
+            A promise can go through three states:
+                - Pending (when create a promise
+                - Fulfilled (when call the resolve function)
+                - Rejected (when call reject function) <br/>
+            To get the result of the successful promise exceution. we need to register a callback handler using .then<br/>
+            whenever we call resolve, the promise will return back the value passed to the resolve function which we can collect using .then
+            if the operation is not success, then we call the reject function.<br/>
+            We can add multiple .then handlers to a single promise. 
+            When we have multiple .then hanlder added, the return value of the previous .then hanlder is automatically passed to the next .then
+        </p>
+        <script>
+            const promise = new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    const sum = 4 + 5;
+                    if(isNaN(sum)) {
+                        reject('Error while calculating sum');
+                    } else {
+                        resolve(sum);
+                    }
+                    resolve(sum);
+                }, 2000);
+            });
+            promise.then(function(result) {
+                console.log(result);
+                // you can write some code in which the result is required condition
+            });
+
+            // chain 
+            promise.then(function(result) {
+                console.log('First .then');
+                return result;
+            }).then(function(result) {
+                console.log('Second .then');
+                console.log(result);
+            })
+        </script>
+    </body>
+</html>
