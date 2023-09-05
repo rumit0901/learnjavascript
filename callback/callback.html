@@ -1,0 +1,53 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Learn about callback</h1>
+        <h3>Callback is a function passed as an argument to another function</h3>
+        <p>Check Console to check the output</p>
+        <script>
+            const posts = [
+                {id: 1, post_title: 'First Post'},
+                {id: 2, post_title: 'Second Post'},
+                {id: 3, post_title: 'Third Post'}
+            ];
+
+            const comments = [
+                {post_id: 2, comment: 'Greate!'},
+                {post_id: 2, comment: 'Nice Post!'},
+                {post_id: 3, comment: 'Awesome Post!'}
+            ]
+
+            const getPost = (id, callback) => {
+                const post = posts.find(post => post.id === id);
+                if(post) {
+                    callback(null, post);
+                } else {
+                    callback("No such post found", undefined);
+                }
+            };
+
+            const getComments = (post_id, callback) => {
+                const result = comments.filter(comment => comment.post_id === post_id);
+                if(result) {
+                    callback(null, result);
+                } else {
+                    callback("No comment found", undefined);
+                }
+            }
+
+            getPost(2, (error, post) => {
+                if(error) {
+                    console.error(error);
+                }
+                console.log('Post: ', post);
+                getComments(post.id, (error, comments) => {
+                    if(error) {
+                        console.error(error);
+                    }
+                    console.log('Comments: ', comments);
+                })
+                
+            })
+        </script>
+    </body>
+</html>

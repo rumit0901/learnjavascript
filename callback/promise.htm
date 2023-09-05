@@ -1,0 +1,24 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Learn Promise</h1>
+        <h3>A promise represents an asynchronous operation whose result will be come in the future</h3>
+        <p>
+            The promise constructor takes a function as an argument and that function internally receives resolve - reject as parameters.<br/>
+            The resolve - reject parameters are actually functions that we can call depending on the outcome of the asynchronous operation.<br/>
+            A promise can go through three states:
+                - Pending (when create a promise
+                - Fulfilled (when call the resolve function)
+                - Rejected (when call reject function) <br/>
+            To get the res
+        </p>
+        <script>
+            const promiste = new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    const sum = 4 + 5;
+                    resolve(sum);
+                }, 2000);
+            });
+        </script>
+    </body>
+</html>
